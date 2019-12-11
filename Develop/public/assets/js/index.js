@@ -129,6 +129,7 @@ var renderNoteList = function(notes) {
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
     renderNoteList(data);
+    console.log(data)
   });
 };
 

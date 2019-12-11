@@ -26,32 +26,20 @@ app.get("/", function (req, res) {
 })
 
 app.get("/notes", function(req, res){
-    res.sendFile(path.join(__dirname, "./public/notes.html"));
-    fs.readFile("./db/db.json", function(err, data){
-        if (err) throw err;
-    })
-    
+    res.sendFile(path.join(__dirname, "./public/notes.html")); 
 });
 
 app.get("/api/notes", function (req,res){
-    res.send(dataJSON)
-      
+    res.send(dataJSON)     
 });
 
 app.post("/api/notes", function(req,res){
-    fs.writeFile("./db/db.json", function(err, data){
+    fs.appendFile("./db/db.json", JSON.stringify(req.body), function (err){
         if (err) throw err;
-        console.log(data)
+        console.log('success');
         
     })
 });
-
-
-    
-
-
-
-
 
 
 app.listen(PORT, function(){
