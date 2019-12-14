@@ -34,11 +34,20 @@ app.get("/api/notes", function (req,res){
 });
 
 app.post("/api/notes", function(req,res){
+    fs.readFile("./db/db.json",function(err, data){
+        
+        dataNotes = JSON.parse(data)
+        console.log(dataNotes)
+    })
+
+   
     fs.appendFile("./db/db.json", JSON.stringify(req.body), function (err){
         if (err) throw err;
         console.log('success');
-        
+        dataJSON.push(JSON.stringify(req.body))
     })
+
+   
 });
 
 
