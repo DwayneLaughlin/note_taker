@@ -34,21 +34,26 @@ app.get("/api/notes", function (req,res){
 });
 
 app.post("/api/notes", function(req,res){
-    fs.readFile("./db/db.json",function(err, data){
-        
-        dataNotes = JSON.parse(data)
-        console.log(dataNotes)
-    })
+    const addNote = {
+        id: dataJSON.length +1,
+        title: req.body.title,
+        text: req.body.text,
+    };
 
-   
-    fs.appendFile("./db/db.json", JSON.stringify(req.body), function (err){
-        if (err) throw err;
-        console.log('success');
-        dataJSON.push(JSON.stringify(req.body))
-    })
-
-   
+    dataJSON.push(addNote)
+    res.json(dataJSON)
+    console.log(addNote)
 });
+
+app.delete("api/notes/:id", function(req,res){
+    const listID = req.params.id;
+    deleteNote = dataJSON.filter(note => {
+        
+    });
+
+    res.send ('deleted')
+
+})
 
 
 app.listen(PORT, function(){
