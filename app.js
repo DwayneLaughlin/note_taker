@@ -42,16 +42,19 @@ app.post("/api/notes", function(req,res){
 
     dataJSON.push(addNote)
     res.json(dataJSON)
-    console.log(addNote)
+    console.log(dataJSON)
 });
 
 app.delete("api/notes/:id", function(req,res){
-    const listID = req.params.id;
-    deleteNote = dataJSON.filter(note => {
+    
+    const deleteNote = dataJSON.find(note => {note.id === parseInt(req.params.id)
         
     });
 
-    res.send ('deleted')
+    const index = dataJSON.indexOf(deleteNote);
+    dataJSON.splice(index, 1);
+
+    res.send (deleteNote)
 
 })
 
