@@ -47,14 +47,11 @@ app.post("/api/notes", function(req,res){
 
 app.delete("api/notes/:id", function(req,res){
     
-    const deleteNote = dataJSON.find(note => {note.id === parseInt(req.params.id)
-        
-    });
-
-    const index = dataJSON.indexOf(deleteNote);
-    dataJSON.splice(index, 1);
-
-    res.send (deleteNote)
+    dataJSON.destroy({
+        where:{
+            id: req.params.id
+        }
+    })
 
 })
 
