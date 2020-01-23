@@ -40,18 +40,21 @@ app.post("/api/notes", function(req,res){
         text: req.body.text,
     };
 
+
     dataJSON.push(addNote)
     res.json(dataJSON)
     console.log(dataJSON)
+
+    fs.writeFile("./db/db.json",JSON.stringify(dataJSON), (err)=> {
+        if (err) throw err;
+        console.log("post works")
+    })
 });
 
 app.delete("api/notes/:id", function(req,res){
+    var id = req.params.id;
+    var dataParse = JSON.parse(dataJSON);
     
-    dataJSON.destroy({
-        where:{
-            id: req.params.id
-        }
-    })
 
 })
 
