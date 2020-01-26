@@ -51,9 +51,28 @@ app.post("/api/notes", function(req,res){
     })
 });
 
-app.delete("api/notes/:id", function(req,res){
-    var id = req.params.id;
-    var dataParse = JSON.parse(dataJSON);
+app.delete("/api/notes/:id", function(req,res){
+    // const deleteId = req.params.id;
+    // console.log(deleteId);
+    fs.readFile("./db/db.json", (err, data) =>{
+        if (err) throw (err);
+        const deleteId = parseInt(req.params.id);
+        parseData = JSON.parse(data);
+        // console.log(deleteId);
+        for (i=0; i<parseData.length; i++) {
+            // console.log(parseData[i].id)
+
+            if (deleteId === parseData[i].id) {
+                console.log(parseData[i].id)
+                dataJSON.splice(i,1)
+
+            }
+        }
+    })
+    fs.writeFile("./db/db.json",JSON.stringify(dataJSON), (err)=> {
+        if (err) throw err;
+       res.send(dataJSON)
+    })
     
 
 })
