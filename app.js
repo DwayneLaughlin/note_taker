@@ -65,14 +65,15 @@ app.delete("/api/notes/:id", function(req,res){
             if (deleteId === parseData[i].id) {
                 console.log(parseData[i].id)
                 dataJSON.splice(i,1)
-
             }
         }
     })
     fs.writeFile("./db/db.json",JSON.stringify(dataJSON), (err)=> {
         if (err) throw err;
-       res.send(dataJSON)
+       
     })
+
+    res.send(dataJSON)
     
 
 })
