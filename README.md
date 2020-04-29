@@ -4,4 +4,4 @@ This is a CRUD application that allows users to save notes to a database using E
 ![](https://laughlinportfolio.herokuapp.com/static/media/notetaker.4219b321.png)
 
 
-https://rocky-stream-46867.herokuapp.com/
+Deployed Application: https://rocky-stream-46867.herokuapp.com/
